@@ -1,0 +1,25 @@
+/* Стили контейнера кнопок */
+.buttons-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 2px solid blue;
+}
+
+.buttons-container a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0px;
+    height: 60px;
+    border-radius: 10px;
+    border: 1.5px solid black;
+    transition: 1s all;
+}
+
+.buttons-container a:hover {
+    background: #000;
+    color: #fff;
+}
