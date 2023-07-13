@@ -4,33 +4,46 @@ import './css/style.css';
 // Контейнер кнопок
 export function ButtonsContainer() {
 
-    const arrayButtonsContainer = [
+    const arrayButtonsContainer: any = [
         {
             id: 0,
             textButton: "Камера",
-            className: "",
-            href: "/camera",
+            className: "button0",
+            // href: "/camera",
+            href: "#camera",
+            src: "./images/camera.png",
             targetFlag: false,
         },
         {
             id: 1,
             textButton: "Данные контакта",
-            className: "",
-            href: "/",
-            targetFlag: false,
+            className: "button1 button-disable",
+            href: "#af",
+            // href: "/",
+            src: "./images/user.png",
+            targetFlag: true,
         },
         {
             id: 2,
             textButton: "Задачи",
-            className: "",
-            href: "/list_tasks",
+            className: "button2",
+            href: "#task",
+            // href: "/tasks",
+            src: "./images/task.png",
             targetFlag: false,
         },
     ]
 
     // обработчик кнопок
-    const hendlerButtonContainerItem = () => {
+    const hendlerButtonContainerItem = (event: any) => {
+        const arrayButtonContainerBlock = document.querySelectorAll('.buttons-container')[0].children;
+        const elementButtonContainer = document.querySelector(`.${event.target.className}`);
 
+        for (let i = 0; i < arrayButtonContainerBlock.length; i++) {
+            arrayButtonContainerBlock[i].classList.remove('button-disable');
+        }
+
+        elementButtonContainer?.classList.add('button-disable');
     }
 
     return (
@@ -43,7 +56,11 @@ export function ButtonsContainer() {
                         onClick={hendlerButtonContainerItem}
                         href={element.href}
                     >
-                        {element.textButton}
+                        <img
+                            src={element.src}
+                            alt="иконка кнопки"
+                            className={element.className}
+                        />
                     </a>
                 ))}
             </div>
