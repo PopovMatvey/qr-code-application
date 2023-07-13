@@ -4,13 +4,26 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 20px 0px;
 }
 
 .header-information h1 {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
 }
 
+.header-information a {
+    transition: 1s all;
+}
+
+.header-information a:hover {
+    padding: 5px;
+}
+
+.header-information a:active {
+    transform: scale(1.2);
+}
+
 .header-information img {
-    height: 100px;
+    height: 60px;
 }

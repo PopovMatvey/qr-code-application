@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../images/logo.svg';
+import logo from '../../images/qrcode.jpeg';
 import "./css/style.css";
 
 export function Footer() {
@@ -8,9 +8,9 @@ export function Footer() {
         <footer>
             <div className="footer-content">
                 <img src={logo} className="App-logo" alt="logo" />
-                <h1>React app</h1>
+                <h1>QR app</h1>
             </div>
-            <span>Template. Clear react app project</span>
+            <span>Все права защищены</span>
         </footer>
     );
 }
