@@ -1,6 +1,11 @@
 import React from "react";
 import "./css/style.css";
 import { Route, Routes } from "react-router-dom";
+import { ListTasks } from "../../page/ListTasks";
+import { ContactData } from "../../page/ContactData";
+import { Camera } from "../../page/Camera";
+import { Tasks } from "../../page/Tasks";
+import { SavePage } from "../../page/SavePage";
 
 // Основной контент
 export function MainContent() {
@@ -9,10 +14,11 @@ export function MainContent() {
         <>
             <div className="main-content-container">
                 <Routes>
-                    <Route path="/" element={<h1>Данные контакта</h1>} />
-                    <Route path="camera" element={<h1>Камера</h1>} />
-                    <Route path="list_tasks" element={<h1>Список задач</h1>} />
-                    <Route path="task" element={<h1>Задача</h1>} />
+                    <Route path="/" element={<ContactData title={"Данные контакта"} />} />
+                    <Route path="/camera" element={<Camera title={"Камера"} />} />
+                    <Route path="/list_tasks" element={<ListTasks title={"Список задач"} />} />
+                    <Route path="/task" element={<Tasks title={"Задача"} />} />
+                    <Route path="/save_page" element={<SavePage title={"Камера"} />} />
                 </Routes>
             </div>
         </>

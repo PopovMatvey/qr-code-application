@@ -1,12 +1,14 @@
 import React from "react";
-import logo from '../../images/qrcode.jpeg';
+import logo from '../../images/floppy-disk.png';
 import './css/style.css';
 
-export function HeaderInformation() {
+export function HeaderInformation({ title }: any) {
     return (
         <div className="header-information">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1>QR app</h1>
+            <h1>{title}</h1>
+            <a href="/save_page">
+                <img src={logo} className="App-logo" alt="logo" />
+            </a>
         </div>
     );
 }

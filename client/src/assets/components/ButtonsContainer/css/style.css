@@ -5,15 +5,15 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    padding: 20px 0px;
 }
 
 .buttons-container a {
     display: flex;
     align-items: center;
-    margin: 10px 0px;
+    margin-bottom: 20px;
     height: 60px;
     border-radius: 10px;
-    border: 1.5px solid black;
     transition: 1s all;
 }
 
