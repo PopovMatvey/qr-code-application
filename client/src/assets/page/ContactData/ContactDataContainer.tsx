@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './css/data_contact_container.css';
 import './css/modalNotification.css';
 import { Input } from '../../components/Input';
 import { useNotificationWindowState } from '../../hook/notificationWindowState';
+import { ContextContactData } from '../../hook/contextContactData';
 
 // Контейнер данных контакта
 export function DataContactContainer() {
-    /* Поля ввода */
+    // /* Поля ввода */
     const [nameInput, setNameInput] = useState("");                 // Состояние input "ФИО"
     const [phoneInput, setPhoneInput] = useState("+7");             // Состояние input "Телефон"
     const [emailInput, setEmailInput] = useState("");               // Состояние input "E-mail"
@@ -14,6 +15,9 @@ export function DataContactContainer() {
     const [companyInput, setCompanyInput] = useState("");           // Состояние input "Компания"
     const [nameEventInput, setNameEventInput] = useState("");       // Состояние input "Название мероприятия"
     const [responsibleInput, setResponsibleInput] = useState("");   // Состояние input "Ответсвенный"
+
+    // const nameInput = useContext(ContextContactData);
+    // const setNameInput = useContext(ContextContactData);
 
     /* Кнопки отправки */
     const [saveContactButton, setSaveContactButton] = useState(false);  // Состояние кнопки "Сохранить контакт"

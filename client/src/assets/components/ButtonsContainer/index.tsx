@@ -39,7 +39,7 @@ export function ButtonsContainer() {
         ]
     );
 
-    console.log(arrayButtonsContainer)
+    // console.log(arrayButtonsContainer)
 
     // Обработчик кнопок
     const hendlerButtonContainerItem = (event: any) => {
