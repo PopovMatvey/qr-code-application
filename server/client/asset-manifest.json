@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.a11bff89.css",
-    "main.js": "/static/js/main.762b3111.js",
+    "main.css": "/static/css/main.e1ccfa19.css",
+    "main.js": "/static/js/main.b695c72d.js",
     "static/js/787.fcf432be.chunk.js": "/static/js/787.fcf432be.chunk.js",
     "static/media/BerlinType-Bold.otf": "/static/media/BerlinType-Bold.9dab94178b1737b870ba.otf",
     "static/media/BerlinType-Regular.otf": "/static/media/BerlinType-Regular.1bbba4deb8775ccac9dc.otf",
+    "static/media/qrcode.jpeg": "/static/media/qrcode.a2440e523877689df97d.jpeg",
     "static/media/framd.otf": "/static/media/framd.953badef5157dd688816.otf",
     "static/media/Concrete-Regular.otf": "/static/media/Concrete-Regular.fcb1090140aa5427f444.otf",
     "index.html": "/index.html",
-    "main.a11bff89.css.map": "/static/css/main.a11bff89.css.map",
-    "main.762b3111.js.map": "/static/js/main.762b3111.js.map",
+    "main.e1ccfa19.css.map": "/static/css/main.e1ccfa19.css.map",
+    "main.b695c72d.js.map": "/static/js/main.b695c72d.js.map",
     "787.fcf432be.chunk.js.map": "/static/js/787.fcf432be.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a11bff89.css",
-    "static/js/main.762b3111.js"
+    "static/css/main.e1ccfa19.css",
+    "static/js/main.b695c72d.js"
   ]
 }
