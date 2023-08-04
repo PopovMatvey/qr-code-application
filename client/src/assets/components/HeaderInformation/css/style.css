@@ -12,18 +12,6 @@
     font-weight: bold;
 }
 
-.header-information a {
-    transition: 1s all;
-}
-
-.header-information a:hover {
-    padding: 5px;
-}
-
-.header-information a:active {
-    transform: scale(1.2);
-}
-
 .header-information img {
-    height: 60px;
+    height: 100px;
 }

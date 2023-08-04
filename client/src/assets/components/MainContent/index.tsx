@@ -5,7 +5,6 @@ import { ListTasks } from "../../page/ListTasks";
 import { ContactData } from "../../page/ContactData";
 import { Camera } from "../../page/Camera";
 import { Tasks } from "../../page/Tasks";
-import { SavePage } from "../../page/SavePage";
 
 // Основной контент
 export function MainContent() {
@@ -18,7 +17,6 @@ export function MainContent() {
                     <Route path="/camera" element={<Camera title={"Камера"} />} />
                     <Route path="/list_tasks" element={<ListTasks title={"Список задач"} />} />
                     <Route path="/task" element={<Tasks title={"Задача"} />} />
-                    <Route path="/save_page" element={<SavePage title={"Камера"} />} />
                 </Routes>
             </div>
         </>
