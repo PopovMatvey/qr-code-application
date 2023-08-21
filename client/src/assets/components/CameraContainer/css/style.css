@@ -1,0 +1,44 @@
+/* Стили камеры */
+.camera-container {
+    width: 100%;
+}
+
+.camera-container video{
+    width: 100%;
+    padding: 10px;
+}
+
+.camera-container span{
+    display: block;
+}
+
+.camera-container_buttons {
+    width: 100%;
+    padding: 10px;
+}
+
+.camera-container_buttons button {
+    background: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    transition: 1s all;
+}
+
+.camera-container_buttons button:hover {
+    background: #bbb;
+}
+
+.camera-container_buttons__create-capture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.camera-container_buttons__procces-capture {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}

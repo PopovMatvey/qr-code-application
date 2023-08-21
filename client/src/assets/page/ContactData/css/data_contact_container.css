@@ -1,8 +1,9 @@
 /* Стили контейнера данных контакта  */
 h3 {
     text-align: center;
-    font-size: 20px;
+    font-size: 30px;
     margin: 10px;
+    /* font-weight: bold; */
 }
 
 .data-contact-container {

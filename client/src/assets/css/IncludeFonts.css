@@ -20,3 +20,9 @@
     font-family: 'fram';
     src: url("../fonts/framd/framd.otf");
 }
+
+/* Inter */
+@font-face {
+    font-family: "Inter";
+    src: url('../fonts/Inter/Inter-Medium.ttf');
+}

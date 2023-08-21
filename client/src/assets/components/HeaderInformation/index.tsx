@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../images/qrcode.jpeg';
+import logo from '../../images/logo.png';
 import './css/style.css';
 
 export function HeaderInformation({ title }: any) {

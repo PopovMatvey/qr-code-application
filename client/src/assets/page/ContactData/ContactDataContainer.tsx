@@ -5,10 +5,11 @@ import { Input } from '../../components/Input';
 import { useNotificationWindowState } from '../../hook/notificationWindowState';
 import { ContextContactData } from '../../hook/contextContactData';
 
+
 // Контейнер данных контакта
 export function DataContactContainer() {
     // /* Поля ввода */
-    const [nameInput, setNameInput] = useState("");                 // Состояние input "ФИО"
+    // const [nameInput, setNameInput] = useState("");                 // Состояние input "ФИО"
     const [phoneInput, setPhoneInput] = useState("+7");             // Состояние input "Телефон"
     const [emailInput, setEmailInput] = useState("");               // Состояние input "E-mail"
     const [jobTitleInput, setJobTitleInput] = useState("");         // Состояние input "Должность"
@@ -16,7 +17,7 @@ export function DataContactContainer() {
     const [nameEventInput, setNameEventInput] = useState("");       // Состояние input "Название мероприятия"
     const [responsibleInput, setResponsibleInput] = useState("");   // Состояние input "Ответсвенный"
 
-    // const nameInput = useContext(ContextContactData);
+    const {nameInput, setNameInput} = useContext(ContextContactData);
     // const setNameInput = useContext(ContextContactData);
 
     /* Кнопки отправки */
