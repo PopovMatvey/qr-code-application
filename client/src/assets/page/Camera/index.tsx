@@ -10,9 +10,6 @@ export function Camera({ title }: any) {
         <>
             <HeaderInformation title={title} />
             <CameraContainer />
-            {/* <div className="camera-container">
-                <h2>Область захвата камеры</h2>
-            </div> */}
         </>
     )
 }
