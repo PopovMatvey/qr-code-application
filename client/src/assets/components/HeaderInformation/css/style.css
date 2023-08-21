@@ -4,14 +4,18 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
     padding: 20px 0px;
 }
 
 .header-information h1 {
     font-size: 40px;
     font-weight: bold;
+    text-align: center;
+    padding: 10px 0px;
 }
 
 .header-information img {
-    height: 100px;
+    height: 70px;
+    padding: 10px 10px;
 }
