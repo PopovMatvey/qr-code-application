@@ -1,5 +1,7 @@
 /* Стили камеры */
 .camera-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -15,6 +17,7 @@
 .camera-container_buttons {
     width: 100%;
     padding: 10px;
+
 }
 
 .camera-container_buttons button {
