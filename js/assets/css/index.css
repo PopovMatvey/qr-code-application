@@ -1,7 +1,6 @@
 /* Основные стили */
 body {
   min-width: 300px;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'BerlinTypeBold', 'Concrete', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

@@ -689,11 +689,9 @@ function mainTabs() {
   else {
     return (
       <>
-        <div class="navbar">
-          <ButtonsContainer setNTab={setNTab} />
-        </div>
+        <ButtonsContainer setNTab={setNTab} />
 
-        <div class="main">
+        <div className="main">
           {
             (nTab == 0) && <>
               <QRScaner
