@@ -1,0 +1,59 @@
+/* Стили камеры */
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 60px 60px;
+    margin-bottom: 60px;
+    width: 100%;
+    z-index: 1;
+}
+
+.camera-container video{
+    width: 100%;
+    padding: 10px;
+}
+
+.camera-container span{
+    display: block;
+}
+
+.camera-container_buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+}
+
+.camera-container_buttons button {
+    background: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    transition: 1s all;
+}
+
+.camera-container_buttons button:hover {
+    background: #bbb;
+}
+
+.camera-container_buttons_wrap{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.camera-container_buttons__create-capture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.camera-container_buttons__procces-capture {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}

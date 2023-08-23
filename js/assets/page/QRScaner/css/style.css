@@ -1,0 +1,30 @@
+/* Стили камеры */
+.camera-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    /* width: 100px; */
+    /* height: 80vh; */
+    /* height: 100px; */
+    /* background: #bbb; */
+    /* border: 2px solid wheat; */
+}
+
+/* .camera-container video{ */
+    /* width: 100px; */
+    /* border: 2px solid wheat; */
+/* } */
+
+.html5-qrcode-element{
+    font-size: 18px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 3px;
+    border: 3px solid black;
+    /* background: #d60d0d; */
+}
+.camera-container h2{
+    font-size: 60px;
+    font-weight: bold;
+}
