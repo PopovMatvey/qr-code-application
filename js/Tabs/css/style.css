@@ -1,22 +1,29 @@
 /* Навигационная панель */
-.navbar {
-    position: fixed; /* Установите навигационную панель в фиксированное положение */
-    height: 10%;
-    bottom: 0; /* Расположите навигационную панель в нижней части страницы */
-    width: 100%; /* Полная ширина */
-    background-color: white;
-  }
-  
-  /* Основное содержание */
-  .main {
-    width: 100%; /* Полная ширина */
-    margin-bottom: 0px; /* Добавить в нижнее поле, чтобы избежать наложения */
-  } 
+#root {
+  margin-bottom:100px;
+}
 
-  .checkbox-item {
-    visibility: "false";
-    background-color: rgb(167, 0, 0);
-  }
+/* .navbar { */
+/* position: fixed; Установите навигационную панель в фиксированное положение */
+/* height: 10%; */
+/* bottom: 0; Расположите навигационную панель в нижней части страницы */
+/* width: 100%; Полная ширина */
+/* background-color: white; */
+/* } */
+
+/* Основное содержание */
+.main {
+  width: 100%;
+  /* Полная ширина */
+  margin: 0px 0px 100px;
+  margin-bottom: 0px;
+  /* Добавить в нижнее поле, чтобы избежать наложения */
+}
+
+.checkbox-item {
+  visibility: "false";
+  background-color: rgb(167, 0, 0);
+}
 
 /* html,
 body{
