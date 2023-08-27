@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick start. Local static application</title>
+</head>
+<body>
+    <div id="name"></div>
+
+    <script src="//api.bitrix24.com/api/v1/"></script>
+    <script>
+    
+    // Сформируем запрос на встраивание
+		var requests = [];
+		var requests2 = [];
+		var requests3 = [];
+
+		// Проинициализируем параметры встраивания в карточку лида
+		//var placementBindParams = {};
+
+		// Место куда встраиваемся
+		//placementBindParams.PLACEMENT = 'CRM_LEAD_DETAIL_TAB'; 
+
+		// Ссылка на страницу которая будет отображаться во вкладке
+		//placementBindParams.HANDLER = 'https://cdn-ru.bitrix24.ru/b24855040/app_local/c37ab0a098db05013a190a6b953e1f02/index.html';
+
+		// Заголовок вкладки
+		//placementBindParams.TITLE = 'BORODKIN';
+
+		// Не используется во вкладках
+		//placementBindParams.DESCRIPTION = 'PROGA FOR BORODKIN';
+
+		// // Удалим вкладку в карточке сделки
+		// requests.push({
+		//     method: 'placement.unbind',
+		//     params: {
+		//         PLACEMENT: 'CRM_DEAL_DETAIL_TAB',
+				
+		//         HANDLER: 'https://cdn-ru.bitrix24.ru/b25908258/app_local/6b43c8ef4232460a2fa73f48f3ff87bb/index.html',
+		// 		TITLE: 'Calculator3',
+		//         DESCRIPTION: 'Calculator3',
+		// 		// HANDLER: 'https://172.20.10.2:5000/',
+		//         // TITLE: 'BORODKIN_S_W',
+		//         // DESCRIPTION: 'PROGA FOR BORODKIN',
+		//     },
+		// });
+		// // Отправим запрос на удаление
+		// BX24.callBatch(
+		//     requests,
+		//     function (data) {
+		//         // Pass
+		//     }
+		// );
+		// console.log('Что было отправлено 1: ', requests)
+
+		// Добавим вкладку в карточке сделки
+		requests2.push({
+		    method: 'placement.bind',
+		    params: {
+		        PLACEMENT: 'CRM_DEAL_DETAIL_TAB',
+
+		        HANDLER: 'https://cdn-ru.bitrix24.ru/b26355096/app_local/d4cfaf95feaa3e703e9d01261d415993/index.html',
+		        TITLE: 'Calculator',
+		        DESCRIPTION: 'Calculator',
+				// HANDLER: 'https://192.168.10.35:5000/',
+				// TITLE: 'SERVER4',
+		        // DESCRIPTION: 'PROGA FOR BORODKIN',
+		    },
+			
+		});
+		
+		// Отправим запрос на встраивание
+		BX24.callBatch(
+		    requests2,
+		    function (data) {
+		        // Pass
+		    }
+		);
+		console.log('Что было отправлено 2: ', requests)
+
+		BX24.resizeWindow(400, 2000);
+		// BX24.installFinish();
+
+		// // Добавим пользовательское поле в карточке сделки
+		// requests3.push({
+		//     method: 'userfieldtype.add', 
+		// 	// method: 'userfieldtype.update', 
+		//     params: {
+		//         USER_TYPE_ID: 'MY_CRM_DEAL_FIELD',
+		//         HANDLER: 'https://cdn-ru.bitrix24.ru/b25908258/app_local/e3cbc84bef894359dba61b59b5f8f817/index.html',
+		// 		// HANDLER: 'https://192.168.0.40:5000/',
+		//         TITLE: 'BORODKIN_S',
+		//         DESCRIPTION: 'FIELD FOR BORODKIN',
+		// 		OPTIONS: {
+		// 			height: 500
+		// 		}
+		//     },
+		// });
+
+
+		// // Отправим запрос на встраивание
+		// BX24.callBatch(
+		//     requests3,
+		//     function (data) {
+		//         // Pass
+		//     }
+		// );
+		// console.log('Что было отправлено 3: ', requests3)
+    </script>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Bitrix24 app tutorial</title>
+		<script src="https://api.bitrix24.com/api/v1/"></script>
+	</head>
+	<body>
+		<script>
+			/**
+				* передаем методу  `init` в качестве параметра callback-функцию 
+				* - наше приложение 
+				*/
+				BX24.init(app);
+				
+				function app() {
+					
+					
+					BX24.callMethod('placement.bind', {
+							PLACEMENT: 'CRM_DEAL_DETAIL_TAB',
+							HANDLER: 'https://192.168.10.35:5000/',
+							TITLE: 'СЕРВЕР',
+							DESCRIPTION: 'СЕРВЕР',
+							}, function(res){					 
+					});
+					
+					// BX24.resizeWindow(1789, 1200);
+
+					// { scrollWidth: 1789, scrollHeight: 919 }
+					// console.log("Размеры окна: ", BX24.getScrollSize());
+
+					// BX24.installFinish();
+					// Отправим запрос на встраивание
+					
+				}
+			</script>
+		</body>
+	</html>		 -->

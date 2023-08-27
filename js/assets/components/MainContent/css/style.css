@@ -1,0 +1,10 @@
+/* Стили "Основного контента" */
+.main-content-container{
+    min-height: 90vh;
+    width: 100%;
+    padding: 50px;
+}
+
+.main-content-container h1{
+    font-size: 35px;
+}

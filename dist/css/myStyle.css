@@ -1,0 +1,420 @@
+@keyframes showBlock {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes ani {
+    0% {transform: translateX(-150%);}
+    100% {transform: translateY(0);}
+  }
+  /* @keyframes ani {
+    0% {transform: translateY(-150%);}
+    100% {transform: translateY(0);}
+  } */
+  /* @keyframes ani {
+    0% {font-size: 0;}
+    100% {font-size: 16px;}
+  } */
+
+.labelCheckbox {
+font-size: 12px !important;
+}
+
+
+table.iksweb{
+    transform: translateX(-150%);
+  animation: ani 1s forwards;
+    /* animation: showBlock 1s linear forwards; */
+}
+ /* div.react-dropdown-tree-select{
+    z-index: 999999;
+    background-color: #2475548e;
+    position: relative;
+}
+div.dropdown {
+    z-index: 999999;
+    background-color: #946666;
+    position: absolute;
+}
+li.node.tree {
+    z-index: 999999;
+    background-color: #e9f810;
+    position: relative;
+}
+span.node-label {
+    z-index: 999999;
+    background-color: #6861d6;
+    position: relative;
+}
+.Myddiiivvv {
+    background-color: #ff00c8;
+    position: relative;
+} 
+ul.root {
+    z-index: 999999;
+    background-color: #946666;
+    position: relative;
+} 
+div.dropdown-content {
+    z-index: 999999;
+    background-color: #000000;
+    position: absolute;
+    transform: rotate(180deg);
+} 
+input.checkbox-item {
+    z-index: 999999;
+    position: relative;
+}
+span.node-label {
+    z-index: 999999;
+    position: relative;
+}
+ul.tag-list {
+    z-index: 999999;
+    position: relative;
+}
+a.dropdown-trigger {
+    z-index: 999999;
+    position: relative;
+}
+i.toggle.collapsed {
+    z-index: 999999;
+    position: relative;
+}
+ul.root {
+    z-index: 999999;
+    position: relative;
+}
+li.node.tree {
+    z-index: 999999;
+    position: relative;
+}
+li.tag-item {
+    z-index: 999999;
+    position: relative;
+} */
+/* div.react-dropdown-tree-select
+  div.dropdown
+    a.dropdown-trigger
+      span
+    ul.tag-list
+      li.tag-item
+        input
+    div.dropdown-content
+      ul.root
+        li.node.tree
+          i.toggle.collapsed
+          label
+            input.checkbox-item
+              span.node-label */
+body {
+    /* transform: translateX(-150%); */
+  /* animation: ani 1s forwards; */
+    margin: 1000;
+    padding: 100 px;
+    font-family: sans-serif;
+    animation: showBlock 1s linear forwards;
+    /* background: #EEF2F4; */
+}
+
+.myTabl{
+    margin: 10px 20px 20px 20px;
+    /* margin: 2px 1em 0 auto; */
+    /* padding: 100px; */
+    /* left: 100px; */
+    font-family: sans-serif;
+    /* background: #191919; */
+
+}
+
+.myForm {
+    width: 300 px;
+    padding: 40 px;
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    /* background: #191919; */
+    /* text-align: center; */
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px 0 px rgba(50, 50, 50, 0.52);
+
+}
+.myForm h1 {
+    /* color: white; */
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 100 px;
+}
+/* .myForm h3 {
+    text-align: center;
+} */
+.myForm h3 {
+    text-decoration: underline
+}
+
+/* .myForm h5 {
+    text-align: center;
+} */
+
+.myForm input[type='text'] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 1px 10px;
+    width: 200px;
+    outline: none;
+    /* color: white; */
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+.myForm input[type='text']:focus {
+    width: 200px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+    border-radius: 24px;
+}
+.myForm input[type='text']:disabled {
+    width: 200px;
+    /* border-color: #2e6dcc; */
+    border-color: #000000;
+    background: #EEF2F4;
+}
+.myForm input[type='text']:hover {
+    width: 200px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+}
+
+.myForm input[type='number'] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 1px 10px;
+    width: 150px;
+    outline: none;
+    /* color: white; */
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+.myForm input[type='number']:focus {
+    width: 150px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+    border-radius: 24px;
+}
+.myForm input[type='number']:disabled {
+    width: 150px;
+    /* border-color: #2e6dcc; */
+    border-color: #000000;
+    background: #EEF2F4;
+}
+.myForm input[type='number']:hover {
+    width: 150px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+}
+
+/* .myForm button {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #2e6dcc;
+    padding: 5px 10px;
+    outline: none;
+        color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.myForm button:hover {
+    background: #2e6dcc;
+    color: white;
+} */
+.addLeyout:hover {
+    cursor: pointer;
+}
+.orientImg:hover {
+    cursor: pointer;
+}
+.hideImg:hover {
+    cursor: pointer;
+}
+.addImg:hover {
+    cursor: pointer;
+}
+
+.myForm select {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #2e6dcc;
+    padding: 5px 10px;
+    outline: none;
+    /* color: white; */
+    border-radius: 6px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.myForm select:hover {
+    border: 0;
+    background: #EEF2F4;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    /* border: 2px solid #2e6dcc; */
+    border: 2px solid #e90000;
+    padding: 5px 10px;
+    outline: none;
+    /* color: white; */
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.myBackGround:hover {
+    background-color: rgb(236, 240, 240);
+    transition: background-color 0.7s ease;
+}
+.linePlusBack {
+    border-bottom: 1px dotted rgb(56, 57, 61); /* Параметры линии */
+}
+.linePlusBack:hover {
+    background-color: rgb(236, 240, 240);
+    transition: background-color 0.7s ease;
+    border-bottom: 1px dotted rgb(56, 57, 61); /* Параметры линии */
+}
+
+/* 
+table.iksweb{
+	width: 95%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	height: auto;
+    table-layout: fixed;
+} */
+/* table.iksweb,table.iksweb td, table.iksweb th {
+	border: 1px solid #595959;
+} */
+/* table.iksweb td,table.iksweb th {
+	padding: 3px;
+	width: 30px;
+	height: 35px;
+}
+table.iksweb th {
+	background: #347c99; 
+	color: #fff; 
+	font-weight: normal;
+} */
+
+/* table.iksweb col{
+    width: auto;
+    background: #0087bd; 
+} */
+/* table.iksweb colMy{
+    width: 70%;
+    background: #e716a9; 
+} */
+
+/* table.iksweb tr td:nth-child(1) {
+    width: 25%
+}
+table.iksweb tr td:nth-child(2) {
+    width: 25%
+}
+table.iksweb tr td:nth-child(3) {
+    width: 25%
+}
+table.iksweb tr td:nth-child(4) {
+    width: 25%
+} */
+
+/* table.mainTable tr td:nth-child(1) {
+    width: 50%
+}
+table.mainTable tr td:nth-child(2) {
+    width: 30%
+} */
+
+
+  .line {
+    /* border-bottom: 1px solid rgb(163, 176, 233); Параметры линии */
+    border-bottom: 1px dotted rgb(56, 57, 61); /* Параметры линии */
+    
+   }
+
+/* //////////////////////////////////////////////////////////// */
+.myForm1 input[type='text'] {
+    border: 0;
+    background: none;
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 1px 10px;
+    width: 200px;
+    outline: none;
+    /* color: white; */
+    border-radius: 6px;
+    transition: 0.25s;
+}
+
+.myForm1 input[type='text']:focus {
+    width: 200px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+    border-radius: 24px;
+}
+.myForm1 input[type='text']:disabled {
+    width: 200px;
+    /* border-color: #2e6dcc; */
+    border-color: #000000;
+    background: #EEF2F4;
+}
+.myForm1 input[type='text']:hover {
+    width: 220px;
+    /* border-color: #2e6dcc; */
+    border-color: #d71356;
+    background: #EEF2F4;
+}
+/* .myForm button {
+    border: 0;
+    background: none;
+        display: block;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #2e6dcc;
+    padding: 4px 5px;
+    outline: none;
+        color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.myForm1 button:hover {
+    background: #2e6dcc;
+    color: white;
+} */

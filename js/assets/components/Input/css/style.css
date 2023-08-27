@@ -1,0 +1,34 @@
+/* Стили кастомного input */
+.input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 270px;
+    padding: 0px 15px 0px 15px;
+    font-size: 20px;
+}
+
+.input-container_input{
+    width: 100%;
+}
+
+.input-container_input label{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 5px 0px;
+}
+
+.input-container input{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+.not-validate{
+    background: rgba(255, 0, 0,0.2);
+}

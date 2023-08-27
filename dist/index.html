@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Borodkin App</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
+  <!-- <link rel="stylesheet" href="./css/main.min.css"> -->
+  <!-- <link rel="stylesheet" href="./css/myStyle.css"> -->
+  <script src="//api.bitrix24.com/api/v1/"></script>
+  <!-- <script data-main = "libs/main" src = "libs/require.js"></script> -->
+
+  <!-- <link rel="icon" href="data:;base64,="> -->
+  <!-- <link rel="shortcut icon" href="#">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="shortcut icon" href="/favicon.ico"> -->
+
+<!-- <script src="https://unpkg.com/dynamsoft-camera-enhancer@2.1.0/dist/dce.js"></script> -->
+
+<!-- <link rel="icon" href="data:;base64,="> -->
+<!-- <link rel="shortcut icon" href="#">
+<link rel="manifest" href="/manifest.json">
+<link rel="shortcut icon" href="/favicon.ico"> -->
+
+<!-- <script src="https://unpkg.com/dynamsoft-camera-enhancer@2.1.0/dist/dce.js"></script> -->
+
+
+<link rel="stylesheet" type="text/css" href="./styles.css" media="all">
+
+<!-- <link rel="stylesheet" type="text/css" href="/styles.css" media="all"> -->
+
+
+<script src="html5-qrcode.min.js"></script>
+<!-- <script src="html5-qrcode-demo.js"></script> -->
+
+
+</head>
+<body>
+    <!-- <div class="container">
+    </div> -->
+    <!-- <script>
+      let size = BX24.getScrollSize();
+      BX24.resizeWindow(size.scrollWidth, size.scrollHeight + 300);
+    </script> -->
+    
+    
+    <div id="root"></div>
+    <script src="bundle.js"></script>
+    <!-- <div id="qr-reader" style="width:400px"></div>
+    <div id="qr-reader-results"></div> -->
+
+
+
+
+    <!-- <button id="capture">Capture</button>
+    <div id="enhancerUIContainer" style="height: 100vh;"></div> -->
+  <!-- <form class="box" action="index.html" method="post">
+    <h1>Login</h1>
+    <input type="text" name="" placeholder="Username">
+    <input type="password" name="" placeholder="Password">
+    <button>Login</button>
+  </form> -->
+
+  <!-- <button id="capture">Capture</button>
+<div id="enhancerUIContainer" style="height: 50vh;"></div>
+
+
+<script>
+ let enhancer = null;
+ (async () => {
+     enhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
+     document.getElementById("enhancerUIContainer").appendChild(enhancer.getUIElement());
+     await enhancer.open(true);
+ })();
+
+ document.getElementById('capture').onclick = () => {
+        if (enhancer) {
+            let frame = enhancer.getFrame();
+            let width = screen.availWidth;
+            let height = screen.availHeight;
+            let popW = 640, popH = 640;
+            let left = (width - popW) / 2;
+            let top = (height - popH) / 2;
+            popWindow = window.open('', 'popup', 'width=' + popW + ',height=' + popH +
+                ',top=' + top + ',left=' + left + ', scrollbars=yes');
+              
+            popWindow = window.open('', 'popup', 'width=' + 50 + ',height=' + 50 +
+              ',top=' + 50 + ',left=' + 50 + ', scrollbars=yes');
+
+            popWindow.document.body.appendChild(frame.canvas);
+        }
+    };
+</script> -->
+</body>
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hello Camera</title>
+    <script src="https://unpkg.com/dynamsoft-camera-enhancer@2.1.0/dist/dce.js"></script>
+</head>
+
+<body>
+    <button id="capture">Capture</button>
+    <div id="enhancerUIContainer" style="height: 100vh;"></div>
+    <script>
+        let enhancer = null;
+        (async () => {
+            enhancer = await Dynamsoft.DCE.CameraEnhancer.createInstance();
+            document.getElementById("enhancerUIContainer").appendChild(enhancer.getUIElement());
+            await enhancer.open(true);
+        })();
+
+        document.getElementById('capture').onclick = () => {
+            if (enhancer) {
+                let frame = enhancer.getFrame();
+            
+                let width = screen.availWidth;
+                let height = screen.availHeight;
+                let popW = 640, popH = 640;
+                let left = (width - popW) / 2;
+                let top = (height - popH) / 2;
+
+                popWindow = window.open('', 'popup', 'width=' + popW + ',height=' + popH +
+                    ',top=' + top + ',left=' + left + ', scrollbars=yes');
+
+                popWindow.document.body.appendChild(frame.canvas);
+            }
+        };
+    </script>
+    
+</body>
+
+</html> -->
+
+
+<!-- <html>
+  <head>
+    <title>Html-Qrcode Demo</title>
+  <body>
+    <div id="qr-reader" style="width:400px"></div>
+    <div id="qr-reader-results"></div>
+  </body>
+  <script src="html5-qrcode.min.js"></script>
+  <script src="html5-qrcode-demo.js"></script>
+  </head>
+</html> -->
