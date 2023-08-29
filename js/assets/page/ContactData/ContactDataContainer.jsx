@@ -9,8 +9,7 @@ import DropdownHOC       from '../../../DpopdownTreeSelect/DropdownHOC';
 import 'toolcool-range-slider'
 
 // Контейнер данных контакта
-export function DataContactContainer({decodedText, data, date, setData, IdItemCutawayApp, setDecodedText, dataListDepartaments, setDataListDepartaments, listUsersBitrix, idUserDefault, listContacts, listCompany }) {
-    
+export function DataContactContainer({decodedText, data, date, setData, IdItemCutawayApp, setDecodedText, dataListDepartaments, setDataListDepartaments, listUsersBitrix, idUserDefault, listContacts, listCompany, arrayPhoto, setArrayPhoto }) {
     // /* Поля ввода */
     const [nameInput,        setNameInput]        = useState(data.name);        // Состояние input "ФИО"
     const [phoneInput,       setPhoneInput]       = useState(data.phone);       // Состояние input "Телефон"
@@ -34,7 +33,7 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
     const [filteredListCompany, setFilteredListCompany]   = useState(listCompany);
 
     const [update, setUpdate] = useState(false);
-
+    const [valueInputTypeFile, setValueInputTypeFile] = useState(undefined); // Для сброса input type file
     /* Кнопки отправки */
     const [saveContactButton, setSaveContactButton] = useState(false);  // Состояние кнопки "Сохранить контакт"
     const [createDealButton, setCreateDealButton] = useState(false);    // Состояние кнопки "Создать сделку"
@@ -346,7 +345,15 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
     // }
 
     // Обработка на изменение поля "Фото"
-    const handlerPhotoOnChange = (event) => {
+    const handlerPhotoOnChange = async (event) => {
+        setValueInputTypeFile(undefined);
+        for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
+            let tmp = false;
+            let result = await readerFileIndex(i);
+            arrayPhoto.map(e => { if (e.fileData[0] == document.getElementById('object-photo').files[i].name) tmp = true});
+            if (!tmp) arrayPhoto.push({"fileData": [document.getElementById('object-photo').files[i].name, result.target.result]});
+        }
+        
         setData({
             name:            nameInput,
             firstName:       firstNameInput,
@@ -451,7 +458,9 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
         })
     }
 
-    const crmContactAdd = async ({e, arrPhoto}) => {
+    const crmContactAdd = async ({e, arrayPhotoTMP}) => {
+        console.log("e",e);
+        console.log("arrayPhotoTMP в функции",arrayPhotoTMP);
         return new Promise((resolve, reject) => {
             BX24.callMethod('crm.contact.add', { 
                 fields: { 
@@ -465,7 +474,7 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
                         VALUE_TYPE: "WORK"
                     }],
                     UF_CRM_EVENTTITLE: e.nameEvent,
-                    UF_CRM_PHOTO:      arrPhoto,
+                    UF_CRM_PHOTO:      arrayPhotoTMP,
                     OPENED:            "Y", 
                     ASSIGNED_BY_ID:    e.userResponsible, 
                     TYPE_ID:           "CLIENT",
@@ -501,7 +510,7 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
         })   
     }
 
-    const crmDealAdd = async ({e, arrPhoto, idCreatedCompany, idCreatedContact}) => {
+    const crmDealAdd = async ({e, arrayPhotoTMP, idCreatedCompany, idCreatedContact}) => {
         return new Promise((resolve, reject) => {
             BX24.callMethod('crm.deal.add', { 
                 fields: {
@@ -510,7 +519,7 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
                     COMMENTS:         e.comment + ' \n\n\Отсканированные данные: ' + decodedText,
                     ASSIGNED_BY_ID:   userResponsible, 
                     UF_CRM_NAMEEVENT: e.nameEvent,
-                    UF_CRM_PHOTODEAL: arrPhoto
+                    UF_CRM_PHOTODEAL: arrayPhotoTMP
                     // SOURCE_ID: // crm.status.list с фильтром filter[ENTITY_ID]=SOURCE
                 }}, e => {                        
                     if (e.answer.time.length != 0) {
@@ -611,16 +620,25 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
         // }
         }
               
+        // // Готовим фотографии/файлы для передачи на сервер Bitrix24
+        // let arrPhoto = [];
+        // for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
+        //     let result = await readerFileIndex(i);
+        //     arrPhoto[i] = {"fileData": [document.getElementById('object-photo').files[i].name, result.target.result.split("base64,")[1]]}
+        //     // arrPhoto[i] = {"fileData": [document.getElementById('object-photo').files[i].name, result.target.result]}
+        // }
+
         // Готовим фотографии/файлы для передачи на сервер Bitrix24
-        let arrPhoto = [];
-        for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
-            let result = await readerFileIndex(i);
-            arrPhoto[i] = {"fileData": [document.getElementById('object-photo').files[i].name, result.target.result.split("base64,")[1]]}
-        }
+        let arrayPhotoTMP = arrayPhoto;
+        arrayPhoto.map((e, i) => {
+            let img = e.fileData[1].split("base64,")[1];
+            arrayPhotoTMP[i].fileData[1] = img;
+        });
 
         // Метод создаёт контакт
         let idCreatedContact = -1;
-        idCreatedContact = await crmContactAdd({e, arrPhoto});
+        // idCreatedContact = await crmContactAdd({e, arrPhoto});
+        idCreatedContact = await crmContactAdd({e, arrayPhotoTMP});
         
         // Создаём компанию
         let idCreatedCompany = -1;
@@ -759,7 +777,8 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
         }
 
         if (createDealButton) {
-            await crmDealAdd({e, arrPhoto, idCreatedCompany, idCreatedContact});
+            // await crmDealAdd({e, arrPhoto, idCreatedCompany, idCreatedContact});
+            await crmDealAdd({e, arrayPhotoTMP, idCreatedCompany, idCreatedContact});
         }
 
         // Сброс введёных полей
@@ -787,7 +806,8 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
         setCommentInput("");
         setPhotoInput([]);
         setDecodedText("");
-
+        setArrayPhoto([]);
+        setValueInputTypeFile("");
         getModalWindow("Успех", "Данные отправлены успешно", true);
       }
 
@@ -990,8 +1010,8 @@ export function DataContactContainer({decodedText, data, date, setData, IdItemCu
                         getSelectedData = {getSelectedData} 
                         />
                     {/* <GetSelectResponsibleUser/> */}
-                    <Input type={"file"}  id={"object-photo"} title={"Фото/Файлы"} name="object-photo" accept="image/*;capture=camera" handlerOnChange={handlerPhotoOnChange}/>
-                    {/* <img src="" id={"img"} height="200" alt="Image preview..."></img> */}
+                    <Input type={"file"}  id={"object-photo"} title={"Фото/Файлы"} name="object-photo" accept="image/*;capture=camera" defaultValue={valueInputTypeFile} handlerOnChange={handlerPhotoOnChange}/>
+                    {arrayPhoto.map((e, i) => (<img key={i} src={arrayPhoto[i].fileData[1]} id={"img"} height="50" style={{padding: "5px"}} alt={arrayPhoto[i].fileData[0]}></img>))} 
                     <Input type={"text"}  id={"comment"}      title={"Комментарий"}          defaultValue={commentInput}         handlerOnChange={handlerCommentOnChange} />
                     {/* <Input type={"text"}  id={"contacts"}      title={"ФИО"}          defaultValue={commentInput}     onKeyUpFunc={handlerCommentOnChange} /> */}
                     

@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { Context } from '../Context/Context.js'
+import React from 'react'
+// import { Context } from '../Context/Context.js'
 import './css/style.css';
 import { ButtonsContainer } from "../assets/components/ButtonsContainer/index"
-import BX24API from '../Bitrix24/BX24'
-import Preloader from '../Preloader/Preloader'
+import BX24API              from '../Bitrix24/BX24'
+import Preloader            from '../Preloader/Preloader'
 
-import { Camera } from '../assets/page/Camera/index.jsx'
-import { Tasks } from '../assets/page/Tasks/index.jsx'
+import { Camera }      from '../assets/page/Camera/index.jsx'
+import { Tasks }       from '../assets/page/Tasks/index.jsx'
 import { ContactData } from '../assets/page/ContactData/index.jsx'
-import { Photo } from '../assets/page/Photo/index.jsx'
+import { Photo }       from '../assets/page/Photo/index.jsx'
 import { CameraContainerWebcam } from '../assets/components/CameraContainerWebcam';
 
-// const { useState, useEffect, useContext } = React;
+const { useState, useEffect } = React;
 
 function mainTabs() {
-  let date = new Date();
+  let date  = new Date();
   let month = (date.getMonth() < 10) ? ("0" + (date.getMonth() + 1)) : (date.getMonth() + 1);
-  let day = (date.getDate() < 10) ? ("0" + date.getDate()) : date.getDate();
+  let day   = (date.getDate()  < 10) ? ("0" + date.getDate())        : date.getDate();
 
   const [dataListDepartaments, setDataListDepartaments] = useState([]);
-  const [listUsersBitrix, setListUsersBitrix] = useState([]);
-  const [IdItemCutawayApp, setIdItemCutawayApp] = useState(-1); // идентификатор элемента хранилища, в котором хранится последнее название мероприятия
+  const [listUsersBitrix,      setListUsersBitrix]      = useState([]);
+  const [IdItemCutawayApp,     setIdItemCutawayApp]     = useState(-1); // идентификатор элемента хранилища, в котором хранится последнее название мероприятия
 
   const [size, setSize] = useState(100);
 
@@ -29,35 +29,35 @@ function mainTabs() {
   const [idUserDefault, setIdUserDefault] = useState(-1);
 
   const [listContacts, setListContacts] = useState([]);
-  const [listCompany, setListCompany] = useState([]);
+  const [listCompany,  setListCompany]  = useState([]);
 
-  const [nTab, setNTab] = useState(0);
+  const [nTab,        setNTab]        = useState(0);
   const [decodedText, setDecodedText] = useState("");
   const [data, setData] = useState({
-    name: "",
-    firstName: "",
-    lastName: "",
-    surName: "",
-    phone: "+7",
-    email: "",
-    jobTitle: "",
-    company: "",
-    nameEvent: "",
-    responsible: "",
+    name:            "",
+    firstName:       "",
+    lastName:        "",
+    surName:         "",
+    phone:           "+7",
+    email:           "",
+    jobTitle:        "",
+    company:         "",
+    nameEvent:       "",
+    responsible:     "",
     userResponsible: "",
-    comment: "",
-    idFolder: "",
-    photo: []
+    comment:         "",
+    idFolder:        "",
+    photo:           []
   });
 
   const [dataTask, setDataTask] = useState({
-    name: "",
-    description: "",
-    date: date.getFullYear() + '-' + month + '-' + day,
-    responsible: "",
+    name:            "",
+    description:     "",
+    date:            date.getFullYear() + '-' + month + '-' + day,
+    responsible:     "",
     userResponsible: "",
-    idFolder: "",
-    photo: []
+    idFolder:        "",
+    photo:           []
   });
 
 
@@ -621,7 +621,7 @@ function mainTabs() {
           return ("err");
         }
       }
-      console.log("listCompany", listCompany);
+      console.log("listCompany",listCompany);
       setListCompany(listCompany);
 
       // Загружаем список контактов
@@ -648,7 +648,7 @@ function mainTabs() {
           return ("err");
         }
       }
-      console.log("listContacts", listContacts);
+      console.log("listContacts",listContacts);
       setListContacts(listContacts);
 
       // Читаем хранилищe "cutawayApp"
@@ -923,7 +923,7 @@ function mainTabs() {
     // handleForceupdateMethod();
     // setMyKey(e.target.value);
     setSize(e.target.value);
-  }
+}
 
   if (!load) {
     return (
@@ -933,53 +933,51 @@ function mainTabs() {
   else {
     return (
       <>
-        <Context.Provider value={[size, setSize]}>
-          <ButtonsContainer setNTab={setNTab} />
-          <div className="main">
-            {((nTab == 0) /*&& (showCam)*/) && <><Camera /*key = {myKey}*/ title={"Сканер"}
-              setDecodedText={setDecodedText}
-              decodedText={decodedText}
-              // size={Number(size)}
-            // const [size, setSize] = useState(100);
+        <ButtonsContainer setNTab={setNTab}/>
+        <div className="main">
+          {((nTab == 0) /*&& (showCam)*/) && <><Camera /*key = {myKey}*/ title={"Сканер"} 
+              setDecodedText = {setDecodedText} 
+              decodedText    = {decodedText} 
+              size           = {Number(size)}
             /></>}
-            {(nTab == 0) &&
-              <><h5 className='custom-slider-text'>Размер сканера: {size}</h5>
-                <input
-                  type='range'
-                  onChange={onChangeSlider}
-                  min={50}
-                  max={250}
-                  step={1}
-                  value={size}
-                  className='custom-slider'>
-                </input></>}
-            {(nTab == 1) && <CameraContainerWebcam title={"Камера"} />}
-            {(nTab == 2) && <> <ContactData title={"Контакт"}
-              decodedText={decodedText}
-              data={data}
-              setData={setData}
-              date={dataTask.date}
-              IdItemCutawayApp={IdItemCutawayApp}
-              setDecodedText={setDecodedText}
-              dataListDepartaments={dataListDepartaments}
-              setDataListDepartaments={setDataListDepartaments}
-              listUsersBitrix={listUsersBitrix}
-              idUserDefault={idUserDefault}
-              listContacts={listContacts}
-              listCompany={listCompany}
-            /></>}
-            {(nTab == 3) && <> <Tasks title={"Задача"}
-              dataTask={dataTask}
-              setDataTask={setDataTask}
-              idUserDefault={idUserDefault}
-              listUsersBitrix={listUsersBitrix}
-              dataListDepartaments={dataListDepartaments}
-              setDataListDepartaments={setDataListDepartaments}
-              nameEvent={data.nameEvent}
-              IdItemCutawayApp={IdItemCutawayApp}
-            /></>}
-          </div>
-        </Context.Provider>
+          {(nTab == 0) &&
+            <><h5 className='custom-slider-text'>Размер сканера: {size}</h5>
+            <input 
+              type      = 'range'
+              onChange  = {onChangeSlider}
+              min       = {50}
+              max       = {250}
+              step      = {1}
+              value     = {size}
+              className = 'custom-slider'>
+            </input></>}
+          {/* {(nTab == 1) && <Photo title={"Фото"} />} */}
+          {(nTab == 1) && <CameraContainerWebcam title={"Камера"} />}
+          {(nTab == 2) && <> <ContactData title={"Контакт"}
+            decodedText             = {decodedText}
+            data                    = {data}
+            setData                 = {setData}
+            date                    = {dataTask.date}
+            IdItemCutawayApp        = {IdItemCutawayApp}
+            setDecodedText          = {setDecodedText}
+            dataListDepartaments    = {dataListDepartaments}
+            setDataListDepartaments = {setDataListDepartaments}
+            listUsersBitrix         = {listUsersBitrix}
+            idUserDefault           = {idUserDefault}
+            listContacts            = {listContacts}
+            listCompany             = {listCompany}
+          /></>}
+          {(nTab == 3) && <> <Tasks title={"Задача"}
+            dataTask                = {dataTask}
+            setDataTask             = {setDataTask}
+            idUserDefault           = {idUserDefault}
+            listUsersBitrix         = {listUsersBitrix}
+            dataListDepartaments    = {dataListDepartaments}
+            setDataListDepartaments = {setDataListDepartaments}
+            nameEvent               = {data.nameEvent}
+            IdItemCutawayApp        = {IdItemCutawayApp}
+          /></>}
+        </div>
       </>
     )
   }

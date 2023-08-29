@@ -4,16 +4,19 @@ import Webcam from "react-webcam";
 import { HeaderInformation } from "../HeaderInformation";
 
 // Камера
-export function CameraContainerWebcam({ title }) {
+export function CameraContainerWebcam({ title, arrayPhoto }) {
     const webcamRef = useRef(null);
     const [imgSrc, setImgSrc] = useState(null);
     const [captureFlag, setCaptureFlag] = useState(true);
-    const [arrayPhoto] = useState([]);
+    // const [arrayPhoto] = useState([]);
 
     // Обработчик "Сделать фото"
     const handlerCreateCapture = useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        setImgSrc(imageSrc);
+        let fileName = `${Math.floor(Math.random() * (1000000000000 - 0 + 1) + 0)}.jpeg`;
+        console.log(fileName);
+        setImgSrc({ "fileData": [fileName, imageSrc] });
+
         setCaptureFlag(false);
 
         console.log(arrayPhoto);
@@ -25,7 +28,8 @@ export function CameraContainerWebcam({ title }) {
         setImgSrc(null);
         setCaptureFlag(true);
 
-        console.log(arrayPhoto);
+        console.log("img", imgSrc);
+        // console.log(arrayPhoto);
     }
 
     // Обработчик "Удалить фото"
@@ -33,7 +37,7 @@ export function CameraContainerWebcam({ title }) {
         setImgSrc(null);
         setCaptureFlag(true);
 
-        console.log(arrayPhoto);
+        console.log("img", arrayPhoto);
     }
 
     const FACING_MODE_USER = "user";
@@ -62,14 +66,15 @@ export function CameraContainerWebcam({ title }) {
             <div className="camera-container">
                 {
                     imgSrc ? (
-                        <img src={imgSrc} alt="webcam" />
+                        <img src={imgSrc.fileData[1]} alt="webcam" />
                     ) : (
                         <Webcam
                             ref={webcamRef}
                             screenshotFormat="image/jpeg"
                             videoConstraints={{
                                 ...videoConstraints,
-                                facingMode
+                                facingMode,
+                                frameRate: { ideal: 60, max: 60, },
                             }}
                         />
                     )

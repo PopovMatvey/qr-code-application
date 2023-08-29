@@ -16,8 +16,13 @@ function App() {
 
   return (
     <>
-      <MainContent />
-      <ButtonsContainer />
+
+      {/* <ContextContactData.Provider value={nameInput}>
+        <ContextContactData.Provider value={setNameInput}> */}
+          <MainContent />
+          <ButtonsContainer />
+        {/* </ContextContactData.Provider>
+      </ContextContactData.Provider> */}
     </>
   );
 }

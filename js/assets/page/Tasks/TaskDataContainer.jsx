@@ -8,7 +8,8 @@ import BX24API           from '../../../Bitrix24/BX24';
 import DropdownHOC       from '../../../DpopdownTreeSelect/DropdownHOC';
 
 // Контейнер данных контакта
-export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix, dataListDepartaments, setDataListDepartaments, nameEvent, IdItemCutawayApp}) {
+export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix, dataListDepartaments, setDataListDepartaments, nameEvent, IdItemCutawayApp, arrayPhoto, setArrayPhoto}) {
+   
     // /* Поля ввода */
     const [nameInput,        setNameInput]        = useState(data.name);        // Состояние input "Название задачи"
     const [descriptionInput, setDescriptionInput] = useState(data.description); // Состояние input "Описание задачи"
@@ -17,6 +18,7 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
 
     const [userResponsible, setUserResponsible]   = useState(data.userResponsible); // ID ответственного
     const [update, setUpdate] = useState(false);
+    const [valueInputTypeFile, setValueInputTypeFile] = useState(undefined); // Для сброса input type file
 
     const [idFolder] = useState(data.idFolder);
 
@@ -104,6 +106,18 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
         setUpdate(!update);
     }
 
+    // Обработка на изменение поля "Фото"
+    const handlerPhotoOnChange = async (event) => {
+        setValueInputTypeFile(undefined);
+        for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
+            let tmp = false;
+            let result = await readerFileIndex(i);
+            arrayPhoto.map(e => { if (e.fileData[0] == document.getElementById('object-photo').files[i].name) tmp = true});
+            if (!tmp) arrayPhoto.push({"fileData": [document.getElementById('object-photo').files[i].name, result.target.result]});
+        }
+        setUpdate(!update);
+    }
+
     // Обработка на изменение поля "Ответственный"
     const handlerResponsibleOnChange = (event) => {
         // Показать стандартный диалог одиночного выбора пользователя
@@ -160,14 +174,14 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
         })
     }
 
-    const diskFileAdd = async (arrPhoto, i, idFolder) => {
+    const diskFileAdd = async (arrayPhotoTMP, i, idFolder) => {
         return new Promise((resolve, reject) => {
             BX24.callMethod('disk.folder.uploadfile', { 
                 id: idFolder,
                 data: {
-                    NAME: arrPhoto[i].fileData[0]
+                    NAME: arrayPhotoTMP[i].fileData[0]
                 },
-                fileContent: arrPhoto[i].fileData[1],
+                fileContent: arrayPhotoTMP[i].fileData[1],
                 // fileContent: document.getElementById('object-photo'),
                 generateUniqueName: true}, e => {      
                     if (e.answer.time.length != 0) {
@@ -195,17 +209,26 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
     const addTask = async (e) => {   
         // ЭТИ ОПЕРАЦИИ МОЖНО ДЕЛАТЬ ПАРАЛЛЕЛЬНО!!! ТИПА ТАК: await Promise.all
         // Готовим фотографии/файлы для передачи на сервер Bitrix24
-        let arrPhoto = [];
-        for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
-            let result = await readerFileIndex(i);
-            arrPhoto[i] = {"fileData": [document.getElementById('object-photo').files[i].name, result.target.result.split("base64,")[1]]}
-        }
+        // let arrPhoto = [];
+        // for (let i = 0; i < document.getElementById('object-photo').files.length; i++) {
+        //     let result = await readerFileIndex(i);
+        //     arrPhoto[i] = {"fileData": [document.getElementById('object-photo').files[i].name, result.target.result.split("base64,")[1]]}
+        // }
         
-        // СНАЧАЛА НАДО НАЙТИ ID ПАПКИ, В КОТОРУЮ БУДУТ СОХРАНЯТЬСЯ ФАЙЛЫ!!!!!!!!!!!!!
+         // Готовим фотографии/файлы для передачи на сервер Bitrix24
+         let arrayPhotoTMP = arrayPhoto;
+         arrayPhoto.map((e, i) => {
+             let img = e.fileData[1].split("base64,")[1];
+             arrayPhotoTMP[i].fileData[1] = img;
+         });
+
         let idFolder = e.idFolder;
         let resultAddFilesFolder = [];
-        for (let i = 0; i < arrPhoto.length; i++ ) {
-            resultAddFilesFolder[i] = await diskFileAdd(arrPhoto, i, idFolder);
+        // for (let i = 0; i < arrPhoto.length; i++ ) {
+        //     resultAddFilesFolder[i] = await diskFileAdd(arrPhoto, i, idFolder);
+        // }
+        for (let i = 0; i < arrayPhotoTMP.length; i++ ) {
+            resultAddFilesFolder[i] = await diskFileAdd(arrayPhotoTMP, i, idFolder);
         }
  
         // Создаём задачу
@@ -313,11 +336,15 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
         setData({
             name:            "",
             description:     "",
-            date:            "",
+            date:            dateInput,
             responsible:     responsibleInput,
             userResponsible: userResponsible,
             idFolder:        idFolder
         });
+        setArrayPhoto([]);
+        setNameInput("");
+        setDescriptionInput("");
+        setValueInputTypeFile("");
         getModalWindow("Успех", "Данные отправлены успешно", true);
       }
 
@@ -353,6 +380,9 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
         setModalWindowState(parModalWindowState);
     }
 
+
+    // console.log(arrayPhoto);
+
     return (
         <>
             {/* <div className="data-contact-container"> */}
@@ -371,7 +401,8 @@ export function TaskDataContainer({data, setData, idUserDefault, listUsersBitrix
                         data            = {dataListDepartaments}
                         getSelectedData = {getSelectedData} 
                     />
-                    <Input type={"file"} id={"object-photo"} title={"Фото/Файлы"} name="object-photo" accept="image/*;capture=camera"/>
+                    <Input type={"file"} id={"object-photo"} title={"Фото/Файлы"} name="object-photo" accept="image/*;capture=camera" defaultValue={valueInputTypeFile} handlerOnChange={handlerPhotoOnChange}/>
+                    {/* {arrayPhoto.map((e, i) => (<img key={i} src={arrayPhoto[i].fileData[1]} id={"img"} height="50" style={{padding: "5px"}} alt={arrayPhoto[i].fileData[0]}></img>))}  */}
                     <div className="data-contact-container_submit">
                         <table width="100%" className="tableInTask" /*border = "1px" solid="1px"*/>
                             <tbody>
