@@ -1,0 +1,72 @@
+/* Стили камеры */
+.camera-container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0px 60px 0px;
+    width: 100%;
+    z-index: 1;
+}
+
+.camera-container video {
+    height: 50vh;
+    padding: 10px;
+}
+
+.camera-container span {
+    display: block;
+}
+
+.camera-container_buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+}
+
+.camera-container_buttons button {
+    background: #fff;
+    padding: 20px 35px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 3px solid #000;
+    transition: 1s all;
+}
+
+.camera-container_buttons button:hover {
+    background: #bbb;
+}
+
+.camera-container_buttons_wrap {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.camera-container_buttons__create-capture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.camera-container_buttons__procces-capture {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.webcam-container {
+    width: 100%;
+    /* visibility: hidden; */
+    /* height: 10px; */
+    /* overflow: hidden; */
+}
+
+.webcam-container video {
+    width: 4000px;
+    height: 3000px;
+}
