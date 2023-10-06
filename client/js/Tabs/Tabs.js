@@ -21,7 +21,6 @@ function mainTabs() {
   const [IdItemCutawayApp, setIdItemCutawayApp] = useState(-1); // идентификатор элемента хранилища, в котором хранится последнее название мероприятия
   const [arrayPhoto, setArrayPhoto] = useState([]);
 
-  const [size, setSize] = useState(100);
 
   // const [idNameEventEntity, setIdNameEventEntity] = useState(-1); 
   const [load, setLoad] = useState(false);
@@ -1027,22 +1026,17 @@ function mainTabs() {
     }
 
     // customiserBitrix24();
-    // getDataDB();
+    getDataDB();
   }, [])
   // const [myKey, setMyKey] = useState(0);
-  const onChangeSlider = (e) => {
-    // setMyKey(e.target.value);
-    // handleForceupdateMethod();
-    // setMyKey(e.target.value);
-    setSize(e.target.value);
-  }
+  
 
-  // if (!load) {
-  //   return (
-  //     <Preloader />
-  //   )
-  // }
-  // else {
+  if (!load) {
+    return (
+      <Preloader />
+    )
+  }
+  else {
     return (
       <>
         <ButtonsContainer setNTab={setNTab} />
@@ -1053,11 +1047,17 @@ function mainTabs() {
               <Camera title={"Сканер"}
                 setDecodedText={setDecodedText}
                 decodedText={decodedText}
-                size={Number(size)}
+                // size={Number(size)}
               />
-            </>}
-          {(nTab == 0) &&
-            <><h5 className='custom-slider-text'>Размер сканера: {size}</h5>
+
+{/* const [size, setSize] = useState(100);
+  const onChangeSlider = (e) => {
+    // setMyKey(e.target.value);
+    // handleForceupdateMethod();
+    // setMyKey(e.target.value);
+    setSize(e.target.value);
+  }
+              <h5 className='custom-slider-text'>Размер сканера: {size}</h5>
               <input
                 type='range'
                 onChange={onChangeSlider}
@@ -1066,7 +1066,21 @@ function mainTabs() {
                 step={1}
                 value={size}
                 className='custom-slider'>
-              </input></>}
+              </input> */}
+            </>}
+          {/* {(nTab == 0) &&
+            <>
+              <h5 className='custom-slider-text'>Размер сканера: {size}</h5>
+              <input
+                type='range'
+                onChange={onChangeSlider}
+                min={50}
+                max={250}
+                step={1}
+                value={size}
+                className='custom-slider'>
+              </input>
+            </>} */}
           {(nTab == 1) && <CameraContainerWebcam title={"Камера"} arrayPhoto={arrayPhoto} />}
           {(nTab == 2) && <> <ContactData title={"Контакт"}
             decodedText={decodedText}
@@ -1099,7 +1113,7 @@ function mainTabs() {
         </div>
       </>
     )
-  // }
+  }
 }
 
 export default mainTabs

@@ -18,6 +18,8 @@ const createConfig = (props) => {
     }
     if (props.disableFlip !== undefined) {
         config.disableFlip = props.disableFlip;
+        // console.log("flip ",props.disableFlip);
+        alert('flip ' + props.disableFlip + " " + config.disableFlip);
     }
     return config;
 };

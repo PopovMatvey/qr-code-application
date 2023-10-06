@@ -12,22 +12,16 @@ export function CameraContainerWebcam({ title, arrayPhoto }) {
 
     // Обработчик "Сделать фото"
     const handlerCreateCapture = useCallback(() => {
-        // const imageSrc = webcamProcessedRef.current.getScreenshot();
         let imageSrc = imageSrc = webcamRef.current.getScreenshot();;
         let fileName = `${Math.floor(Math.random() * (1000000000000 - 0 + 1) + 0)}.jpeg`;
 
-        // while (imageSrc == null) {
-        //     imageSrc = webcamRef.current.getScreenshot();
-
-        //     if (imageSrc != null) {
-        //         break;
-        //     }
-        // }
+        while (imageSrc === 'data:,') {
+            imageSrc = webcamRef.current.getScreenshot();
+        }
 
         setImgSrc({ "fileData": [fileName, imageSrc] });
         setCaptureFlag(false);
     }, [webcamRef, arrayPhoto]);
-    // }, [webcamProcessedRef, arrayPhoto]);
 
     // Обработчик "Сохранить фото"
     const handlerSaveCaptuer = () => {
@@ -68,22 +62,18 @@ export function CameraContainerWebcam({ title, arrayPhoto }) {
             <HeaderInformation title={title} />
             <div className="camera-container">
                 {
-                    // imgSrc ? (
-                    //     <img src={imgSrc.fileData[1]} alt="webcam" />
-                    // ) : (
                     <Webcam
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
                         screenshotQuality={1}
-                        minScreenshotHeight={3000}
-                        minScreenshotWidth={4000}
+                        minScreenshotHeight={4000}
+                        minScreenshotWidth={1500}
                         videoConstraints={{
                             ...videoConstraints,
                             facingMode,
-                            frameRate: { ideal: 60, max: 60, },
+                            frameRate: { ideal: 40, max: 60, },
                         }}
                     />
-                    // )
                 }
                 <div className="camera-container_buttons">
                     {
