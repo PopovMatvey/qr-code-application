@@ -1026,17 +1026,17 @@ function mainTabs() {
     }
 
     // customiserBitrix24();
-    getDataDB();
+    // getDataDB();7
   }, [])
   // const [myKey, setMyKey] = useState(0);
   
 
-  if (!load) {
-    return (
-      <Preloader />
-    )
-  }
-  else {
+  // if (!load) {
+  //   return (
+  //     <Preloader />
+  //   )
+  // }
+  // else {
     return (
       <>
         <ButtonsContainer setNTab={setNTab} />
@@ -1114,6 +1114,6 @@ function mainTabs() {
       </>
     )
   }
-}
+// }
 
 export default mainTabs
