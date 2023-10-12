@@ -63,7 +63,7 @@ export function Camera(props) {
     }
 
     const [qrMessage, setQrMessage] = useState("");
-    const [inputRange, setInputRange] = useState(150);
+    const [inputRange, setInputRange] = useState(50);
 
     const handlerInputRange = (event) => {
         setInputRange(event.target.value);
@@ -98,7 +98,7 @@ export function Camera(props) {
             <div className="camera-container">
                 <div className="scaner">
                     <div id="qrCodeContainer" />
-                    <input type="range" step={50} min={150} max={500} onChange={handlerInputRange} value={inputRange} />
+                    <input type="range" step={50} min={50} max={400} onChange={handlerInputRange} value={inputRange} />
                 </div>
                 {qrMessage && <span className="qr-message">{qrMessage}</span>}
                 <br></br><br></br>
