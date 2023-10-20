@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/style.css";
+import ReactDOM from 'react-dom';
 import { HeaderInformation } from "../../components/HeaderInformation";
 // import "html5-qrcode.min.js";
 // import docReady from "./html5-qrcode-demo.js";
@@ -75,20 +76,30 @@ export function Camera(props) {
     //         </>
     //     )
     const [rangeInput, setRangeInput] = useState(100);
+    const [arrayScanData, setArrayScanData] = useState(["sdsd", "sc"]);
+
 
     const styleContainerObject = {
-        width: "100%",
         padding: `${rangeInput}px`,
+        // width: "35%",
+        // width:"75%",
+        // height:"80%",
+        // border: "1px solid blue",
     };
 
     const styleVideoObject = {
-        height: "100%",
+        // height: "100%",
+        // width:"100%",
+        // width:"00px",
+        // height:"60vh",
+        // marginLeft:"25%",
+        // border: "1px solid black",
     };
 
     const constraintsObject = {
         facingMode: 'environment',
-        frameRate: 60,
-        aspectRatio: 1.6,
+        frameRate: 120,
+        aspectRatio: 1.2,
         resizeMode: "crop-and-scale",
     };
 
@@ -96,19 +107,49 @@ export function Camera(props) {
         setRangeInput(event.target.value);
     };
 
+    const handlerOnDecode = (result) => {
+        let returnedArray = arrayScanData;
+        console.log(result);
+        setTimeout(1);
+        console.log(returnedArray);
+        returnedArray.push(result);
+        setArrayScanData(returnedArray);
+        alert(arrayScanData);
+        ReactDOM.render(
+            arrayScanData.map((element, index) => (
+                <span key={index}>{element}</span>
+            )),
+            document.querySelector('.qr-scanner-output-field')
+        );
+        
+        
+        // alert(result);
+    }
+
+    // const output = ReactDOM.creatRoot(
+
+    // )
+
     return (
         <>
             <HeaderInformation title={props.title} />
             <div className="qr-scanner-container">
                 <QrScanner
-                    onDecode={(result) => {console.log(result); alert(result);}}
+                    onDecode={(result) => { handlerOnDecode(result) }}
                     onError={(error) => console.log(error?.message)}
                     containerStyle={styleContainerObject}
                     videoStyle={styleVideoObject}
                     constraints={constraintsObject}
                 />
             </div>
-            <input type="range" value={rangeInput} onChange={handlerRangeinput} min={100} max={230} />
+            <input type="range" value={rangeInput} onChange={handlerRangeinput} min={100} max={200} />
+            <div className="qr-scanner-output-field">
+                {
+                    arrayScanData.map((element, index) => (
+                        <span key={index}>{element}</span>
+                    ))
+                }
+            </div>
         </>
     )
 }

@@ -46,3 +46,14 @@
     justify-content: center;
     padding: 30px;
 }
+
+.qr-scanner-output-field {
+    border: 1px solid black;
+}
+
+.qr-scanner-output-field span {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
