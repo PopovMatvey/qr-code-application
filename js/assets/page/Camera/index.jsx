@@ -76,7 +76,7 @@ export function Camera(props) {
     //         </>
     //     )
     const [rangeInput, setRangeInput] = useState(100);
-    const [arrayScanData, setArrayScanData] = useState(["sdsd", "sc"]);
+    const [arrayScanData, setArrayScanData] = useState([]);
 
 
     const styleContainerObject = {
@@ -107,28 +107,39 @@ export function Camera(props) {
         setRangeInput(event.target.value);
     };
 
-    const handlerOnDecode = (result) => {
-        let returnedArray = arrayScanData;
-        console.log(result);
-        setTimeout(1);
-        console.log(returnedArray);
-        returnedArray.push(result);
-        setArrayScanData(returnedArray);
-        alert(arrayScanData);
-        ReactDOM.render(
-            arrayScanData.map((element, index) => (
-                <span key={index}>{element}</span>
-            )),
-            document.querySelector('.qr-scanner-output-field')
-        );
-        
-        
-        // alert(result);
+    const checkOnExist = (parArray, parElement) => {
+
+        for (let i = 0; i < parArray; i++) {
+            if (parElement === parArray[i]) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    // const output = ReactDOM.creatRoot(
+    const handlerOnDecode = (result) => {
+        let returnedArray = arrayScanData;
+        // alert(checkOnExist(arrayScanData, result));
 
-    // )
+        if (checkOnExist(arrayScanData, result)) {
+            returnedArray.push(result);
+            setArrayScanData(returnedArray);
+            ReactDOM.render(
+                arrayScanData.map((element, index) => (
+                    <span key={index}>{element}</span>
+                )),
+                document.querySelector('.qr-scanner-output-field')
+            );
+        } else {
+            console.log("Уже отсканировано");
+        }
+
+
+
+        // setTimeout(1);
+        // alert(arrayScanData);
+    }
 
     return (
         <>
@@ -143,6 +154,7 @@ export function Camera(props) {
                 />
             </div>
             <input type="range" value={rangeInput} onChange={handlerRangeinput} min={100} max={200} />
+            <h5>Отсканированная информация</h5>
             <div className="qr-scanner-output-field">
                 {
                     arrayScanData.map((element, index) => (
