@@ -102,23 +102,32 @@ export function Camera(props) {
         aspectRatio: 1.2,
         resizeMode: "crop-and-scale",
     };
+
+    const checkOnExist = (parArray, parElement) => {
+       return parArray.indexOf(parElement) === -1;
+    }
+
     const handlerRangeinput = (event) => {
         setRangeInput(event.target.value);
     }
 
     const handlerOnDecodeQR = (result) => {
-
         let returnedArray = arrayScanData;
 
-        console.log(result);
-        returnedArray.push(result);
-        setArrayScanData(returnedArray);
-        ReactDOM.render(
-            arrayScanData.map((element, index) => (
-                <span key={index}>{element}</span>
-            )),
-            document.querySelector('.qr-scanner-output-field')
-        );
+        // console.log(result);
+        if (checkOnExist(arrayScanData, result)) {
+            returnedArray.push(result);
+            setArrayScanData(returnedArray);
+            ReactDOM.render(
+                arrayScanData.map((element, index) => (
+                    <span key={index}>{element}</span>
+                )),
+                document.querySelector('.qr-scanner-output-field')
+            );
+        }
+        //  else {
+        //     console.log("Уже отсканировано");
+        // }
     }
 
     return (
