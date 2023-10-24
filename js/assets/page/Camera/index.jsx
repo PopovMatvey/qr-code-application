@@ -76,7 +76,8 @@ export function Camera(props) {
     //         </>
     //     )
     const [rangeInput, setRangeInput] = useState(100);
-    const [arrayScanData, setArrayScanData] = useState([]);
+    const [arrayScanData, setArrayScanData] = useState([""]);
+    const [flagRender, setFlagRender] = useState(false);
 
 
     const styleContainerObject = {
@@ -104,15 +105,41 @@ export function Camera(props) {
     };
 
     const checkOnExist = (parArray, parElement) => {
-       return parArray.indexOf(parElement) === -1;
+        return parArray.indexOf(parElement) === -1;
     }
 
     const handlerRangeinput = (event) => {
         setRangeInput(event.target.value);
+        console.log(arrayScanData);
+        if (flagRender) {
+            ReactDOM.render(
+                arrayScanData.map((element, index) => (
+                    <span key={index}>{element}</span>
+                )),
+                document.querySelector('.qr-scanner-output-field')
+            );
+            setFlagRender(!flagRender);
+        } else {
+            ReactDOM.render(
+                <></>,
+                document.querySelector('.qr-scanner-output-field')
+            );
+            setFlagRender(!flagRender);
+        }
+        // ReactDOM.render(
+        //     arrayScanData.map((element, index) => (
+        //         <span key={index}>{element}</span>
+        //     )),
+        //     document.querySelector('.qr-scanner-output-field')
+        // );
     }
 
     const handlerOnDecodeQR = (result) => {
         let returnedArray = arrayScanData;
+
+        console.log(arrayScanData);
+        console.log(checkOnExist(arrayScanData, result));
+        console.log(result);
 
         // console.log(result);
         if (checkOnExist(arrayScanData, result)) {
