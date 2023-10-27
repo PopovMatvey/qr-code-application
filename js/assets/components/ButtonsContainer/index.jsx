@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import imgCamera           from "../../images/camera.png"
-import imgUser             from "../../images/user.png"
-import imgTask             from "../../images/task.png"
-import imgScan             from "../../images/scan.png"
+import imgCamera from "../../images/camera.png"
+import imgUser from "../../images/user.png"
+import imgTask from "../../images/task.png"
+import imgScan from "../../images/scan.png"
 
 import './css/style.css';
 
@@ -16,33 +16,47 @@ export function ButtonsContainer(props) {
             {
                 id: 0,
                 textButton: "Сканер",
-                className:  "button1",
-                src:        imgScan,
+                className: "button0",
+                src: imgScan,
             },
             {
                 id: 1,
                 textButton: "Камера",
-                className:  "button0",
-                href:       "/camera",
-                src:        imgCamera,
+                className: "button1",
+                href: "/camera",
+                src: imgCamera,
             },
             {
                 id: 2,
                 textButton: "Данные контакта",
-                className:  "button2",
+                className: "button2",
                 src: imgUser,
             },
             {
                 id: 3,
                 textButton: "Задачи",
                 className: "button3",
-                src:        imgTask,
+                src: imgTask,
             },
         ]
     );
+    // const arrayButtons = document.querySelectorAll('.buttons-container img');
+
+    // alert(arrayButtons[0]);
+    // arrayButtons[0].classList.add('button-disable');
 
     // Обработчик кнопок
     const hendlerButtonContainerItem = (event) => {
+        const arrayButtons = document.querySelectorAll('.buttons-container img');
+
+        for (let i = 0; i < arrayButtons.length; i++) {
+            arrayButtons[i].classList.remove('button-disable');
+
+            if (event.target.classList[0] === arrayButtons[i].classList[0]) {
+                arrayButtons[i].classList.add('button-disable');
+            }
+        }
+        
         props.setNTab(event.target.id);
     }
 
@@ -51,17 +65,17 @@ export function ButtonsContainer(props) {
             <div className="buttons-container">
                 {arrayButtonsContainer.map((element) => (
                     <a
-                        key       = {element.id}
-                        id        = {element.id}
-                        className = {element.className}
-                        onClick   = {hendlerButtonContainerItem}
+                        key={element.id}
+                        id={element.id}
+                        className={element.className}
+                        onClick={hendlerButtonContainerItem}
                     >
                         <img
-                            src       = {element.src}
-                            id        = {element.id}
-                            onClick   = {hendlerButtonContainerItem}
-                            alt       = "иконка кнопки"
-                            className = {element.className}
+                            src={element.src}
+                            id={element.id}
+                            onClick={hendlerButtonContainerItem}
+                            alt="иконка кнопки"
+                            className={element.className}
                         />
                     </a>
                 ))}
